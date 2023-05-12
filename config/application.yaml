@@ -14,10 +14,7 @@ kafka:
   topics:
     user:
       name: user-topic
-      group: userTopicGroup
     company:
       name: company-topic
-      group: companyTopicGroup
     message:
       name: message-topic
-      group: messageTopicGroup
