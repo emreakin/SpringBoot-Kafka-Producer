@@ -1,6 +1,7 @@
 package com.emreakin.configuration;
 
 import com.emreakin.model.CompanyModel;
+import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -36,6 +37,8 @@ public class ProducerConfiguration {
     @Bean
     public ProducerFactory<String, schema.avro.User> userProducerFactory() {
         Map<String, Object> props = createDefaultProps();
+
+        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryAddress);
 
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
